@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Chatbot Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #4158D0 0%, #50c85e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #50c85e 0%, #4158D0 100%);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ebebeb;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #f3f3f3;
+        }
+        
+        .login-btn {
+            background: linear-gradient(135deg, #4158D0 0%, #50c85e 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: white 0px 0px 10px;
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 4rem auto;
+            text-align: center;
+            padding: 2rem;
+            color: white;
+        }
+        
+        .main-heading {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .purple-text {
+            color: #27f73f;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            background: #efecec;
+            color: #07b11b;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .chatbot-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+        
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #27f73f;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            box-shadow: white 0px 0px 10px;
+        }
+        
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: rgb(0, 0, 0) 0px 0px 20px;
+        }
+        
+        .chat-window {
+            position: fixed;
+            bottom: 5rem;
+            right: 2rem;
+            width: 650px;
+            height: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            padding: 1rem;
+            background: linear-gradient(135deg, #4158D0 0%, #50c85e 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .chat-input input {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+        }
+        
+        .chat-input button {
+            padding: 0.5rem 1rem;
+            background: #27f73f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .show {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <span>Sharia-Compliant Chat Bot</span>
+        </div>
+        <div class="nav-links">
+            <!-- <a href="#demo">Demo</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#api">API</a>
+            <a href="#guide">Guide</a> -->
+            <a href="#login" class="login-btn" onclick="toggleChat()">Ask me somting</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <h1 class="main-heading">
+            Sharia-Compliant <br>
+            <span class="purple-text">Chat Bot</span>
+        </h1>
+        <p class="subtitle">
+            The Sharia-Compliant Chatbot is a digital assistant designed to provide accurate and reliable answers to Islamic questions, based on authentic sources and teachings. It aims to guide users in understanding Islamic principles and practices. </p>
+        <button class="cta-button" onclick="toggleChat()">Chat with us!</button>
+    </main>
+
+    <div class="chatbot-widget">
+        <button class="chatbot-button" onclick="toggleChat()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <span>Sharia-Compliant Chat Bot</span>
+                <button onclick="toggleChat()" style="background: none; border: none; color: white; cursor: pointer;">
+                    ×
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be added here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message..." id="messageInput">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.classList.toggle('show');
+        }
+
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (message) {
+                const messagesContainer = document.getElementById('chatMessages');
+
+                // Display the user's message
+                const messageElement = document.createElement('div');
+                messageElement.style.marginBottom = '1rem';
+                messageElement.style.textAlign = 'right';
+                messageElement.innerHTML = `
+            <div style="background: linear-gradient(135deg, #4158D0 0%, #50c85e 100%); color: white; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; max-width: 80%;text-align:left;">
+                ${message}
+            </div>
+        `;
+                messagesContainer.appendChild(messageElement);
+                input.value = '';
+
+                // Send the message to the Flask server
+                fetch('/ask_question', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            question: message
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Display the bot's response
+                        const botMessage = document.createElement('div');
+                        botMessage.style.marginBottom = '1rem';
+                        botMessage.innerHTML = `
+                <div style="background: #f0f0f0; color: #333; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; max-width: 80%;">
+                    ${data.response}
+                </div>
+            `;
+                        messagesContainer.appendChild(botMessage);
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+
+
+        // Allow sending message with Enter key
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+
+</html>
