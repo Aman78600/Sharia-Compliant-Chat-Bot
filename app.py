@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template, request
-import google.generativeai as genai
+# import google.generativeai as genai
 import requests
 from pinecone.grpc import PineconeGRPC as Pinecone
 
@@ -7,7 +7,7 @@ from pinecone.grpc import PineconeGRPC as Pinecone
 # Import necessary libraries
 
 # Configure the GenAI API
-genai.configure(api_key='AIzaSyBgEWO0_xIuVPUWDQuQVvs8v3KtVHJY-7s')
+# genai.configure(api_key='AIzaSyBgEWO0_xIuVPUWDQuQVvs8v3KtVHJY-s7')
 
 qroq_api="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"
 
@@ -24,7 +24,7 @@ llm = ChatGroq(
 # response = llm.invoke("The first person to land on moon was ...")
 # print(response.content)
 # Initialize the Gemini model
-model = genai.GenerativeModel('gemini-1.5-flash')
+# model = genai.GenerativeModel('gemini-1.5-flash')
 
 pc = Pinecone(api_key=PINECONE_API_KEY)
 index_name = "sharia-compliant"
@@ -67,28 +67,21 @@ def search_results(question):
 def ask_question(question):
     
     final_data=search_results(question)
-    print('\n','-'*80,'\n',final_data,'\n','-'*80,'\n')
+    # print('\n','-'*80,'\n',final_data,'\n','-'*80,'\n')
     new_prompt=f"""
-        data: {final_data[3:]} 
-        quesiton : {question}
+You are a knowledgeable Islamic chatbot that provides accurate and respectful answers about Islamic principles and practices. Always start responses with appropriate Arabic phrases when answering questions about Islam. and if need to use my given data.
+Data: {final_data[3:]} 
+Question: ${question}
 
-        if quesiton is related to {final_data} then provide a detailed answer given formet. 
-
-
-        formet = 
-            - first tow line in arabinc.
-            - space
-            - english. 
-            
-        you also add some extra information but not more.
-
-        ###
-        For general greetings (like "hi", "hello", "how are you" ect):
-        this time ignore data. and all and give Respond with a natural conversational answer without any formatting.
-
-        If question is out of tha data then answer me on your information. using formet.
-        ###
-
+Please provide a response that:
+1. Starts with relevant Arabic phrases in Arabic font.(for Islamic topics) 
+2. Gives clear, accurate information about the topic. 
+3. Cites Islamic sources when appropriate . 
+4. Is respectful and helpful to the user. 
+5. Keep responses concise but informative . 
+6. If question is qbout gretting so reply only gretting. 
+7. If question is not about Islamic topics so reply only that --> this is not related to Islamic topics <--.
+8. use \\n for new line
     """
     response = llm.invoke(new_prompt)
     # answer=model.generate_content(new_prompt)
