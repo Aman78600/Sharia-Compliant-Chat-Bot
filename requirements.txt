@@ -1,6 +1,5 @@
 Flask==2.3.3
 requests==2.31.0
-pinecone-client==2.2.2
-langchain-groq==0.1.0  # Assuming this is a custom or publicly available package
+pinecone-client==2.2.0  
+langchain==0.0.318     
 Gunicorn
-pinecone-client
