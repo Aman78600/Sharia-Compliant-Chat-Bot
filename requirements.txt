@@ -4,4 +4,4 @@ pinecone==5.4.0
 protobuf==5.28.3
 Requests==2.32.3
 Gunicorn
-googleapis-common-protos
+pinecone-client
