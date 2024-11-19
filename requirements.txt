@@ -6,3 +6,4 @@ Gunicorn
 protobuf
 grpcio
 langchain-groq
+pinecone[grpc]
