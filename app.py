@@ -5,8 +5,6 @@ from pinecone.grpc import PineconeGRPC as Pinecone
 ################################################################################################
 # Import necessary libraries
 
-qroq_api="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"
-
 PINECONE_API_KEY="ef7da690-c8fa-4156-8bfe-16292e8c7b5d"
 
 from langchain_groq import ChatGroq
